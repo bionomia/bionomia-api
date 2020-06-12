@@ -1,0 +1,54 @@
+# encoding: utf-8
+
+module Sinatra
+  module BionomiaApi
+    module Queries
+
+      def build_user_query(name, obj = {})
+        body = {
+            query: {
+              bool: {
+                must: [
+                  multi_match: {
+                    query:      name,
+                    type:       :cross_fields,
+                    analyzer:   :fullname_index,
+                    fields:     ["family^5", "given^3", "fullname", "other_names", "*.edge"],
+                  }
+                ],
+                should: []
+              }
+            }
+          }
+        if obj.has_key?(:strict) && obj[:strict].downcase == "true"
+          must_should = :must
+        else
+          must_should = :should
+        end
+        if obj.has_key?(:families_collected)
+          collected = obj[:families_collected].is_a?(String) ? obj[:families_collected].split(",") : obj[:families_collected]
+          collected.each do |family|
+            body[:query][:bool][must_should] << { term: { families_collected: family }}
+          end
+        end
+        if obj.has_key?(:families_identified)
+          identified = obj[:families_identified].is_a?(String) ? obj[:families_identified].split(",") : obj[:families_identified]
+          identified.each do |family|
+            body[:query][:bool][must_should] << { term: { families_identified: family }}
+          end
+        end
+        if obj.has_key?(:date)
+          date = /\A\d{4}\z/.match?(obj[:date]) ? "#{obj[:date]}-01-01" : obj[:date]
+          date = /\A\d{4}-\d{2}\z/.match(date) ? "#{date}-01" : date
+          date = DateTime.parse(date).strftime('%Y-%m-%d') rescue nil
+          if date
+            body[:query][:bool][must_should] << { range: { date_born: { lt: date } }}
+            body[:query][:bool][must_should] << { range: { date_died: { gte: date } }}
+          end
+        end
+        body
+      end
+
+    end
+  end
+end
