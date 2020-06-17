@@ -14,7 +14,7 @@ class BIONOMIAAPI < Sinatra::Base
   include Pagy::Frontend
   Pagy::VARS[:items] = 30
 
-  helpers Sinatra::Api::Formatters
+  helpers Sinatra::BionomiaApi::Formatters
   helpers Sinatra::BionomiaApi::Queries
   helpers Sinatra::BionomiaApi::Reconcile
   helpers Sinatra::BionomiaApi::UserHelpers

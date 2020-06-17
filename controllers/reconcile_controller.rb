@@ -1,7 +1,7 @@
 # encoding: utf-8
 
 module Sinatra
-  module BioniomiaApi
+  module BionomiaApi
     module Controller
       module ReconcileController
 
