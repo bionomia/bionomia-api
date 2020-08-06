@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 ruby '2.6.3'
 
 gem 'config'
+gem 'dwc_agent'
 gem 'elasticsearch'
 gem 'pagy'
 gem 'rack-contrib'

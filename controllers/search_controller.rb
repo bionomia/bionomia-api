@@ -7,6 +7,16 @@ module Sinatra
 
         def self.registered(app)
 
+          app.get '/parse' do
+            json_headers
+            json_response(parse_names)
+          end
+
+          app.post '/parse' do
+            json_headers
+            json_response(parse_names)
+          end
+
           app.get '/users/search' do
             json_ld_headers
             api_search_user

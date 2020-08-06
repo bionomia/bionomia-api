@@ -4,6 +4,21 @@ module Sinatra
   module BionomiaApi
     module Queries
 
+      def parse_names
+        output = []
+        return output if params[:names].nil?
+        lines = params[:names].split("\r\n")[0..500]
+        lines.each do |line|
+          item = { original: line.dup, parsed: [] }
+          parsed_names = DwcAgent.parse(line)
+          parsed_names.each do |name|
+            item[:parsed] << DwcAgent.clean(name)
+          end
+          output << item
+        end
+        output
+      end
+
       def build_user_query(name, obj = {})
         body = {
             query: {
