@@ -7,7 +7,7 @@ module Sinatra
       def parse_names
         output = []
         return output if params[:names].nil?
-        lines = params[:names].split("\r\n")[0..500]
+        lines = params[:names].split("\r\n")[0..999]
         lines.each do |line|
           item = { original: line.dup, parsed: [] }
           parsed_names = DwcAgent.parse(line)
