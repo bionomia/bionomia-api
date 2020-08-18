@@ -1,7 +1,7 @@
 elastic:
   server: 'http://localhost:9200'
-  agent_index: 'bioniomia_agents'
-  user_index: 'bioniomia_users'
-  organization_index: 'bioniomia_organizations'
-  dataset_index: 'bioniomia_datasets'
-  article_index: 'bioniomia_articles'
+  agent_index: 'bionomia_agents'
+  user_index: 'bionomia_users'
+  organization_index: 'bionomia_organizations'
+  dataset_index: 'bionomia_datasets'
+  article_index: 'bionomia_articles'
