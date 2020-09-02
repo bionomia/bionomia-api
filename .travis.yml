@@ -1,0 +1,16 @@
+sudo: false
+dist: xenial
+language: ruby
+rvm:
+  - 2.7.1
+branches:
+  only:
+      - master
+install:
+  - gem install bundler
+  - bundle install
+services:
+  - elasticsearch
+before_script:
+  - cp config/settings/test.yml.sample config/settings/test.yml
+  - RACK_ENV=test
