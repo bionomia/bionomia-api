@@ -5,5 +5,5 @@ Sinatra app for API behind Bionomia, which is used to parse people names from st
 
 ## Requirements
 
-1. ruby 2.6.3+
+1. ruby 2.7.1+
 2. Elasticsearch 7.6.1+
