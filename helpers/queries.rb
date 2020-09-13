@@ -43,13 +43,13 @@ module Sinatra
         if obj.has_key?(:families_collected)
           collected = obj[:families_collected].is_a?(String) ? obj[:families_collected].split(",") : obj[:families_collected]
           collected.each do |family|
-            body[:query][:bool][must_should] << { term: { families_collected: family }}
+            body[:query][:bool][must_should] << { nested: { path: "recorded", query: { term: { "recorded.family": family } } } }
           end
         end
         if obj.has_key?(:families_identified)
           identified = obj[:families_identified].is_a?(String) ? obj[:families_identified].split(",") : obj[:families_identified]
           identified.each do |family|
-            body[:query][:bool][must_should] << { term: { families_identified: family }}
+            body[:query][:bool][must_should] << { nested: { path: "identified", query: { term: { "identified.family": family } } } }
           end
         end
         if obj.has_key?(:date)

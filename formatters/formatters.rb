@@ -80,16 +80,16 @@ module Sinatra
               knowsAbout: [{
                 "@type": "ItemList",
                 name: "families_identified",
-                itemListElement: n[:_source][:families_identified].map{|n|
-                  { "@type": "ListItem", name: n }
-                }
+                itemListElement: n[:_source][:identified].map{|n|
+                  { "@type": "ListItem", name: n[:family] }
+                }.uniq
               },
               {
                 "@type": "ItemList",
                 name: "families_collected",
-                itemListElement: n[:_source][:families_collected].map{|n|
-                  { "@type": "ListItem", name: n }
-                }
+                itemListElement: n[:_source][:recorded].map{|n|
+                  { "@type": "ListItem", name: n[:family] }
+                }.uniq
               }]
             }
           }.deep_merge(attr)
