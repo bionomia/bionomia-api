@@ -4,6 +4,24 @@ module Sinatra
   module BionomiaApi
     module UserHelpers
 
+      def search_user
+        @results = []
+        searched_term = params[:q] || nil
+        return if !searched_term
+
+        page = (params[:page] || 1).to_i
+
+        client = Elasticsearch::Client.new url: Settings.elastic.server
+        body = build_name_query(searched_term)
+        from = (page -1) * 30
+
+        response = client.search index: Settings.elastic.user_index, from: from, size: 30, body: body
+        results = JSON.parse(JSON[response["hits"]], symbolize_names: true)
+
+        @pagy = Pagy.new(count: results[:total][:value], items: 30, page: page)
+        @results = results[:hits]
+      end
+
       def api_search_user
         @results = []
         @pagy = OpenStruct.new

@@ -17,6 +17,12 @@ module Sinatra
             json_response(parse_names)
           end
 
+          app.get '/user.json' do
+            json_headers
+            search_user
+            format_autocomplete.to_json
+          end
+
           app.get '/users/search' do
             json_ld_headers
             api_search_user

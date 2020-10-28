@@ -49,6 +49,24 @@ module Sinatra
         end
       end
 
+      def format_autocomplete
+        @results.map{ |n|
+          lifespan = nil
+          if n[:_source][:wikidata]
+            lifespan = "(" + ["b. " + n[:_source][:date_born], "d. " + n[:_source][:date_died]].join(" &ndash; ") + ")"
+          end
+          { id: n[:_source][:id],
+            score: n[:_score],
+            orcid: n[:_source][:orcid],
+            wikidata: n[:_source][:wikidata],
+            fullname: n[:_source][:fullname],
+            fullname_reverse: n[:_source][:fullname_reverse],
+            thumbnail: n[:_source][:thumbnail],
+            lifespan: lifespan
+          }
+        }
+      end
+
       def format_users
         @results.map do |n|
           if n[:_source][:orcid]
