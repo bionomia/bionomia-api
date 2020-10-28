@@ -52,7 +52,7 @@ module Sinatra
       def format_autocomplete
         @results.map{ |n|
           lifespan = nil
-          if n[:_source][:wikidata]
+          if n[:_source][:date_born] && n[:_source][:date_died]
             lifespan = "(" + ["b. " + n[:_source][:date_born], "d. " + n[:_source][:date_died]].join(" &ndash; ") + ")"
           end
           { id: n[:_source][:id],
