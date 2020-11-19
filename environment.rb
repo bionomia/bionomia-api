@@ -1,7 +1,6 @@
 require 'bundler'
 require 'json'
 require 'sinatra/base'
-require 'sinatra/cross_origin'
 require 'config'
 require 'dwc_agent'
 require 'yaml'

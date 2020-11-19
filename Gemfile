@@ -10,7 +10,6 @@ gem 'rack-test'
 gem 'require_all'
 gem 'rest-client'
 gem 'sinatra'
-gem 'sinatra-cross_origin'
 gem 'thin'
 
 group :production do

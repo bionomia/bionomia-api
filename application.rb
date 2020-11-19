@@ -8,7 +8,6 @@ class BIONOMIAAPI < Sinatra::Base
   set :show_exceptions, false
 
   register Config
-  register Sinatra::CrossOrigin
 
   include Pagy::Backend
   include Pagy::Frontend
@@ -21,12 +20,6 @@ class BIONOMIAAPI < Sinatra::Base
 
   register Sinatra::BionomiaApi::Controller::SearchController
   register Sinatra::BionomiaApi::Controller::ReconcileController
-
-  options "*" do
-    response.headers["Allow"] = "HEAD,GET,PUT,POST,OPTIONS"
-    response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept, Client-Security-Token, Referrer"
-    200
-  end
 
   not_found do
     content_type "application/json", charset: 'utf-8'

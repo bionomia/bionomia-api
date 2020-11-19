@@ -15,12 +15,10 @@ module Sinatra
       end
 
       def json_headers
-        cross_origin
         content_type "application/json", charset: 'utf-8'
       end
 
       def json_ld_headers
-        cross_origin
         content_type "application/ld+json", charset: 'utf-8'
       end
 
