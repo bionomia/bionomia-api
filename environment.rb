@@ -15,6 +15,7 @@ require 'uri'
 require 'net/http'
 require 'rack'
 require 'rack/contrib'
+require 'rack/protection'
 
 Encoding.default_internal = Encoding::UTF_8
 Encoding.default_external = Encoding::UTF_8

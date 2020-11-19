@@ -6,6 +6,7 @@ require File.dirname(__FILE__) + '/environment.rb'
 class BIONOMIAAPI < Sinatra::Base
   set :root, File.dirname(__FILE__)
   set :show_exceptions, false
+  set :protection, :except => [:json_csrf]
 
   register Config
 
