@@ -24,7 +24,7 @@ class BIONOMIAAPI < Sinatra::Base
 
   options "*" do
     response.headers["Allow"] = "HEAD,GET,PUT,POST,OPTIONS"
-    response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept, Client-Security-Token"
+    response.headers["Access-Control-Allow-Headers"] = "X-Requested-With, X-HTTP-Method-Override, Content-Type, Cache-Control, Accept, Client-Security-Token, Referrer"
     200
   end
 
