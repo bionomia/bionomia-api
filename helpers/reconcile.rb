@@ -7,6 +7,7 @@ module Sinatra
       def manifest
         {
           name: "Bionomia",
+          versions: ["0.2"],
           identifierSpace: "https://bionomia.net/",
           schemaSpace: "https://schema.org/",
           view: {
