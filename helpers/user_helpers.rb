@@ -11,7 +11,8 @@ module Sinatra
 
         page = (params[:page] || 1).to_i
 
-        client = Elasticsearch::Client.new url: Settings.elastic.server
+        client = Elasticsearch::Client.new url: Settings.elastic.server, request_timeout: 5*60, retry_on_failure: true, reload_on_failure: true
+        client.transport.reload_connections!
         body = build_name_query(searched_term)
         from = (page -1) * 30
 
@@ -35,7 +36,8 @@ module Sinatra
         end
 
         if searched_term
-          client = Elasticsearch::Client.new url: Settings.elastic.server
+          client = Elasticsearch::Client.new url: Settings.elastic.server, request_timeout: 5*60, retry_on_failure: true, reload_on_failure: true
+          client.transport.reload_connections!
           @query = build_user_query(searched_term, params.transform_keys(&:to_sym))
           from = (page -1) * 30
 
