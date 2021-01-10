@@ -47,7 +47,7 @@ GEM
       dry-equalizer (~> 0.2)
       dry-initializer (~> 3.0)
       dry-schema (~> 1.5, >= 1.5.2)
-    dwc_agent (1.5.1.4)
+    dwc_agent (1.5.1.5)
       namae (~> 1)
       namecase (~> 2)
     elasticsearch (7.10.1)
