@@ -51,7 +51,7 @@ module Sinatra
         @results.map{ |n|
           lifespan = nil
           if n[:_source][:date_born] && n[:_source][:date_died]
-            lifespan = "(" + ["b. " + n[:_source][:date_born], "d. " + n[:_source][:date_died]].join(" &ndash; ") + ")"
+            lifespan = ["&#42; " + n[:_source][:date_born], n[:_source][:date_died] + " &dagger;"].join(" &ndash; ")
           end
           { id: n[:_source][:id],
             score: n[:_score],
