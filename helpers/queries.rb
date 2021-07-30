@@ -12,7 +12,7 @@ module Sinatra
           item = { original: line.dup, parsed: [] }
           parsed_names = DwcAgent.parse(line)
           parsed_names.each do |name|
-            item[:parsed] << DwcAgent.clean(name)
+            item[:parsed] << DwcAgent.clean(name).to_h
           end
           output << item
         end
