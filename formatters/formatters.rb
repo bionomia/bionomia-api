@@ -50,9 +50,7 @@ module Sinatra
       def format_autocomplete
         @results.map{ |n|
           lifespan = nil
-          if n[:_source][:date_born] && n[:_source][:date_died]
-            lifespan = ["&#42; " + n[:_source][:date_born], n[:_source][:date_died] + " &dagger;"].join(" &ndash; ")
-          end
+          lifespan = n[:_source][:wikidata] ? format_lifespan(n[:_source]) : nil
           { id: n[:_source][:id],
             score: n[:_score],
             orcid: n[:_source][:orcid],
@@ -111,6 +109,33 @@ module Sinatra
             }
           }.deep_merge(attr)
         end
+      end
+
+      def format_lifespan(user)
+        date_born = Date.parse(user[:date_born]) rescue nil
+        date_died = Date.parse(user[:date_died]) rescue nil
+
+        if user[:date_born_precision] == "day"
+          born = date_born.strftime('%B %e, %Y')
+        elsif user[:date_born_precision] == "month"
+          born = date_born.strftime('%e %Y')
+        elsif user[:date_born_precision] == "year"
+          born = date_born.strftime('%Y')
+        else
+          born = "?"
+        end
+
+        if user[:date_died_precision] == "day"
+          died = date_died.strftime('%B %e, %Y')
+        elsif user[:date_died_precision] == "month"
+          died = date_died.strftime('%e %Y')
+        elsif user[:date_died_precision] == "year"
+          died = date_died.strftime('%Y')
+        else
+          died = "?"
+        end
+
+        ["&#42; " + born, died + " &dagger;"].join(" &ndash; ")
       end
 
     end

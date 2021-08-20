@@ -11,6 +11,7 @@ gem 'require_all'
 gem 'rest-client'
 gem 'sinatra'
 gem 'thin'
+gem 'typhoeus'
 
 group :production do
 end
