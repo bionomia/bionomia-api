@@ -35,7 +35,14 @@ module Sinatra
       end
 
       def process_single_query(query)
-        client = Elasticsearch::Client.new url: Settings.elastic.server
+        client = Elasticsearch::Client.new(
+          url: Settings.elastic.server,
+          request_timeout: 5*60,
+          retry_on_failure: true,
+          reload_on_failure: true,
+          reload_connections: 1_000,
+          adapter: :typhoeus
+        )
         user_query = build_user_query(query)
         json_response = client.search index: Settings.elastic.user_index, size: 10, body: user_query
         response = JSON.parse(JSON[json_response["hits"]], symbolize_names: true)
@@ -43,7 +50,14 @@ module Sinatra
       end
 
       def process_queries(queries)
-        client = Elasticsearch::Client.new url: Settings.elastic.server
+        client = Elasticsearch::Client.new(
+          url: Settings.elastic.server,
+          request_timeout: 5*60,
+          retry_on_failure: true,
+          reload_on_failure: true,
+          reload_connections: 1_000,
+          adapter: :typhoeus
+        )
         queries.map do |key, query|
           properties = {}
           if query[:properties]
