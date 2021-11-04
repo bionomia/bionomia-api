@@ -22,13 +22,27 @@ module Sinatra
       def build_name_query(search)
         {
           query: {
-            multi_match: {
-              query:      search,
-              type:       :cross_fields,
-              analyzer:   :fullname_index,
-              fields:     ["family^5", "given^3", "fullname", "other_names", "*.edge"],
+            bool: {
+              must: [
+                multi_match: {
+                  query:      search,
+                  type:       :cross_fields,
+                  analyzer:   :fullname_index,
+                  fields:     ["family^5", "given^3", "fullname", "other_names", "*.edge"],
+                }
+              ],
+              should: [
+                rank_feature: {
+                  field: "rank"
+                }
+              ]
             }
-          }
+          },
+          sort: [
+            "_score",
+            { family: { order: :asc } },
+            { given: { order: :asc } }
+          ]
         }
       end
 
