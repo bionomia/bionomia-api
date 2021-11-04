@@ -30,6 +30,33 @@ module Sinatra
         @results = results[:hits]
       end
 
+      def search_agent
+        @results = []
+        filters = []
+        searched_term = params[:q] || nil
+        return if !searched_term
+
+        page = (params[:page] || 1).to_i
+        limit = (params[:limit] || 30).to_i
+
+        client = Elasticsearch::Client.new(
+          url: Settings.elastic.server,
+          request_timeout: 5*60,
+          retry_on_failure: true,
+          reload_on_failure: true,
+          reload_connections: 1_000,
+          adapter: :typhoeus
+        )
+        body = build_name_query(searched_term)
+        from = (page -1) * limit
+
+        response = client.search index: Settings.elastic.agent_index, from: from, size: limit, body: body
+        results = JSON.parse(JSON[response["hits"]], symbolize_names: true)
+
+        @pagy = Pagy.new(count: results[:total][:value], items: limit, page: page)
+        @results = results[:hits]
+      end
+
       def api_search_user
         @results = []
         @pagy = OpenStruct.new

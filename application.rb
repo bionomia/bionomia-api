@@ -12,7 +12,7 @@ class BIONOMIAAPI < Sinatra::Base
 
   include Pagy::Backend
   include Pagy::Frontend
-  Pagy::VARS[:items] = 30
+  Pagy::DEFAULT[:items] = 30
 
   helpers Sinatra::BionomiaApi::Formatters
   helpers Sinatra::BionomiaApi::Queries
