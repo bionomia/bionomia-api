@@ -21,5 +21,8 @@ jobs:
       with:
         ruby-version: ${{ env.RUBY_VERSION }}
         bundler-cache: true
+    - name: Setup Config
+      run: |
+          cp config/settings/test.yml.sample config/settings/test.yml
     - name: Run tests
       run: RACK_ENV=test bundle exec rake
