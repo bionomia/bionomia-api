@@ -11,3 +11,12 @@ See [https://bionomia.net/developers](https://bionomia.net/developers) on Search
 
 1. ruby 2.7.1+
 2. Elasticsearch 7.6.1+
+
+## Synonyms File
+
+The synonyms file for indexing of common nicknames is included in [/synonyms/synonyms.txt](synonyms/synonyms.txt) and is referenced in [https://github.com/bionomia/bionomia/blob/master/lib/elastic_user.rb](https://github.com/bionomia/bionomia/blob/master/lib/elastic_user.rb) as a relative path to the `elasticsearch.yml` configuration file, usually in `/etc/elasticsearch` on a Linux-based install. The easiest way to make use of this is to make a symlink from `/etc/elasticsearch/synonyms.txt` to this `synonyms.txt` file.
+
+Whenever this `synonyms.txt` file is updated, the elasticsearch service must be closed and reopened as follows:
+
+      $ curl -X POST "localhost:9200/bionomia_users/_close?pretty"
+      $ curl -X POST "localhost:9200/bionomia_users/_open?pretty"
