@@ -118,7 +118,7 @@ module Sinatra
         if user[:date_born_precision] == "day"
           born = date_born.strftime('%B %e, %Y')
         elsif user[:date_born_precision] == "month"
-          born = date_born.strftime('%e %Y')
+          born = date_born.strftime('%B %Y')
         elsif user[:date_born_precision] == "year"
           born = date_born.strftime('%Y')
         else
@@ -128,7 +128,7 @@ module Sinatra
         if user[:date_died_precision] == "day"
           died = date_died.strftime('%B %e, %Y')
         elsif user[:date_died_precision] == "month"
-          died = date_died.strftime('%e %Y')
+          died = date_died.strftime('%B %Y')
         elsif user[:date_died_precision] == "year"
           died = date_died.strftime('%Y')
         else
