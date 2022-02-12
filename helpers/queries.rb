@@ -29,9 +29,9 @@ module Sinatra
                   type:       :cross_fields,
                   analyzer:   :fullname_index,
                   fields:     [
-                    "family^5",
-                    "given^3",
-                    "fullname",
+                    "family^3",
+                    "given^2",
+                    "fullname^5",
                     "other_names",
                     "*.edge"
                   ],
