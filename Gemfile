@@ -3,7 +3,7 @@ ruby '2.7.1'
 
 gem 'config'
 gem 'dwc_agent'
-gem 'elasticsearch'
+gem 'elasticsearch', '~>7.17'
 gem 'pagy'
 gem 'rack-contrib'
 gem 'rack-test'
