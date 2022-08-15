@@ -96,6 +96,26 @@ module Sinatra
         end
       end
 
+      def user_by_id
+        @result = {}
+        searched_term = params[:id] || nil
+        return if !searched_term
+
+        client = Elasticsearch::Client.new(
+          url: Settings.elastic.server,
+          request_timeout: 5*60,
+          retry_on_failure: true,
+          reload_on_failure: true,
+          reload_connections: 1_000,
+          adapter: :typhoeus
+        )
+        body = query_user_by_id(searched_term)
+
+        response = client.search index: Settings.elastic.user_index, body: body
+        results = JSON.parse(JSON[response["hits"]], symbolize_names: true)
+        @result = results[:hits].first
+      end
+
     end
   end
 end

@@ -48,8 +48,13 @@ module Sinatra
             response = {
               "@context": {
                 "@vocab": "http://schema.org",
+                sameAs: {
+                  "@id": "sameAs",
+                  "@type": "@id"
+                },
                 "opensearch": "http://a9.com/-/spec/opensearch/1.1/",
-                "as": "https://www.w3.org/ns/activitystreams#"
+                "as": "https://www.w3.org/ns/activitystreams#",
+                co_collector: "http://schema.org/colleague"
               },
               "@type": "DataFeed",
               "opensearch:totalResults": @pagy.count,
@@ -74,6 +79,25 @@ module Sinatra
               },
               dataFeedElement: format_users
             }
+            json_response(response)
+          end
+
+          app.get '/:id.json(ld)?' do
+            json_ld_headers
+            response = {}
+            user_by_id
+            if @result
+              response = {
+                "@context": {
+                  "@vocab": "http://schema.org",
+                  sameAs: {
+                    "@id": "sameAs",
+                    "@type": "@id"
+                  },
+                  co_collector: "https://schema.org/colleague"
+                }
+              }.merge(format_user_item(@result))
+            end
             json_response(response)
           end
 

@@ -4,6 +4,19 @@ module Sinatra
   module BionomiaApi
     module Queries
 
+      def query_user_by_id(id)
+        {
+          query: {
+            bool: {
+              should: [
+                { term: { orcid: { value: id } } },
+                { term: { wikidata: { value: id } } }
+              ]
+            }
+          }
+        }
+      end
+
       def parse_names
         output = []
         return output if params[:names].nil?

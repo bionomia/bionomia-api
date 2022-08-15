@@ -66,49 +66,60 @@ module Sinatra
 
       def format_users
         @results.map do |n|
-          if n[:_source][:orcid]
-            attr = {
-              item: {
-                "@id": "https://bionomia.net/#{n[:_source][:orcid]}",
-                sameAs: "https://orcid.org/#{n[:_source][:orcid]}"
-              }
-            }
-          else
-            attr = {
-              item: {
-                "@id": "https://bionomia.net/#{n[:_source][:wikidata]}",
-                sameAs: "http://www.wikidata.org/entity/#{n[:_source][:wikidata]}",
-                birthDate: n[:_source][:date_born],
-                deathDate: n[:_source][:date_died]
-              }
-            }
-          end
           {
             "@type": "DataFeedItem",
-            item: {
-              "@type": "Person",
-              "@id": "",
-              name: n[:_source][:fullname],
-              givenName: n[:_source][:given],
-              familyName: n[:_source][:family],
-              alternateName: [n[:_source][:fullname_reverse]] + n[:_source][:other_names],
-              knowsAbout: [{
-                "@type": "ItemList",
-                name: "families_identified",
-                itemListElement: n[:_source][:identified].map{|n|
-                  { "@type": "ListItem", name: n[:family] }
-                }.uniq
-              },
-              {
-                "@type": "ItemList",
-                name: "families_collected",
-                itemListElement: n[:_source][:recorded].map{|n|
-                  { "@type": "ListItem", name: n[:family] }
-                }.uniq
-              }]
-            }
-          }.deep_merge(attr)
+            item: format_user_item(n)
+          }
         end
+      end
+
+      def format_user_item(n)
+        return {} if !n
+        if n[:_source][:orcid]
+          attr = {
+            "@id": "https://bionomia.net/#{n[:_source][:orcid]}",
+            sameAs: "https://orcid.org/#{n[:_source][:orcid]}"
+          }
+        else
+          attr = {
+            "@id": "https://bionomia.net/#{n[:_source][:wikidata]}",
+            sameAs: "http://www.wikidata.org/entity/#{n[:_source][:wikidata]}",
+            birthDate: n[:_source][:date_born],
+            deathDate: n[:_source][:date_died]
+          }
+        end
+        {
+          "@type": "Person",
+          "@id": "",
+          sameAs: "",
+          name: n[:_source][:fullname],
+          givenName: n[:_source][:given],
+          familyName: n[:_source][:family],
+          alternateName: [n[:_source][:fullname_reverse]] + n[:_source][:other_names],
+          co_collector: n[:_source][:co_collectors].map do |colleague|
+            - same_as = colleague[:orcid] ? "https://orcid.org/#{colleague[:orcid]}" : "http://www.wikidata.org/entity/#{colleague[:wikidata]}"
+            {
+              "@type": "Person",
+              "@id": "https://bionomia.net/#{colleague[:orcid] || colleague[:wikidata]}",
+              sameAS: same_as,
+              name: colleague[:fullname]
+            }
+          end,
+          knowsAbout: [{
+            "@type": "ItemList",
+            name: "families_identified",
+            itemListElement: n[:_source][:identified].map{|n|
+              { "@type": "ListItem", name: n[:family] }
+            }.uniq
+          },
+          {
+            "@type": "ItemList",
+            name: "families_collected",
+            itemListElement: n[:_source][:recorded].map{|n|
+              { "@type": "ListItem", name: n[:family] }
+            }.uniq
+          }]
+        }.merge(attr)
       end
 
       def format_lifespan(user)
