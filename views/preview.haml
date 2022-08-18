@@ -25,13 +25,13 @@
         .card-footer
           %div
             %img{src: "/images/bionomia_16x16.svg"}
-            %a{href: "https://bionomia.net/#{@user[:orcid] || @user[:wikidata]}", style: "color: #1f712c;"}
+            %a{href: "https://bionomia.net/#{@user[:orcid] || @user[:wikidata]}", style: "color: #1f712c;", target: "_blank"}
               https://bionomia.net/#{@user[:orcid] || @user[:wikidata]}
           %div
             - if @user[:orcid]
-              %a{href: "#{@user[:uri]}", style: "color: #1f712c;"}
+              %a{href: "#{@user[:uri]}", style: "color: #1f712c;", target: "_blank"}
                 %i.fab.fa-orcid{style: "color:#A6CE39;"}
                 #{@user[:uri]}
             - else
               %img{src: "/images/wikidata_16x16.svg"}
-              %a{href: "#{@user[:uri]}", style: "color: #1f712c;"} #{@user[:uri]}
+              %a{href: "#{@user[:uri]}", style: "color: #1f712c;", target: "_blank"} #{@user[:uri]}
