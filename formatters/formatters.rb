@@ -103,7 +103,7 @@ module Sinatra
           name: n[:_source][:fullname],
           givenName: n[:_source][:given],
           familyName: n[:_source][:family],
-          alternateName: [n[:_source][:fullname_reverse]] + n[:_source][:other_names]
+          alternateName: [n[:_source][:fullname_reverse]] + n[:_source][:other_names],
           co_collector: n[:_source][:co_collectors].map do |colleague|
             - same_as = colleague[:orcid] ? "https://orcid.org/#{colleague[:orcid]}" : "http://www.wikidata.org/entity/#{colleague[:wikidata]}"
             {
