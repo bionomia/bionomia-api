@@ -85,6 +85,9 @@ GEM
     faraday-rack (1.0.0)
     faraday-retry (1.0.3)
     ffi (1.15.5)
+    haml (5.2.2)
+      temple (>= 0.8.0)
+      tilt
     http-accept (1.7.0)
     http-cookie (1.0.5)
       domain_name (~> 0.5)
@@ -136,6 +139,7 @@ GEM
       rack (~> 2.2)
       rack-protection (= 2.2.2)
       tilt (~> 2.0)
+    temple (0.8.2)
     thin (1.8.1)
       daemons (~> 1.0, >= 1.0.9)
       eventmachine (~> 1.0, >= 1.0.4)
@@ -157,6 +161,7 @@ DEPENDENCIES
   config
   dwc_agent
   elasticsearch (~> 7.17)
+  haml
   pagy
   rack-contrib
   rack-test

@@ -1,0 +1,37 @@
+!!! 5
+%html{lang: "en"}
+  %head
+    %meta{charset: "UTF-8" }/
+    %title #{@user[:fullname]}
+    %link{href: "/css/bootstrap-combined.min.css", rel: "stylesheet", type: "text/css"}
+    %script{src: "//kit.fontawesome.com/c0c5b90533.js", crossorigin: "anonymous"}
+  %body
+    %header
+    %main
+      .card
+        .card-header.d-flex
+          .mr-2
+            %img.img-fluid.img-thumbnail{src: "#{@user[:thumbnail]}"}
+          .flex-grow-1.flex-wrap.align-items-center
+            %h1.h3 #{@user[:fullname]}
+
+        .card-body
+          - if @user[:other_names]
+            %p.text-muted #{@user[:other_names].join(", ")}
+          %p
+          - if @user[:lifespan]
+            %p #{@user[:lifespan]}
+          %p #{@user[:description]}
+        .card-footer
+          %div
+            %img{src: "/images/bionomia_16x16.svg"}
+            %a{href: "https://bionomia.net/#{@user[:orcid] || @user[:wikidata]}", style: "color: #1f712c;"}
+              https://bionomia.net/#{@user[:orcid] || @user[:wikidata]}
+          %div
+            - if @user[:orcid]
+              %a{href: "#{@user[:uri]}", style: "color: #1f712c;"}
+                %i.fab.fa-orcid{style: "color:#A6CE39;"}
+                #{@user[:uri]}
+            - else
+              %img{src: "/images/wikidata_16x16.svg"}
+              %a{href: "#{@user[:uri]}", style: "color: #1f712c;"} #{@user[:uri]}

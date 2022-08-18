@@ -47,25 +47,28 @@ module Sinatra
         end
       end
 
+      def format_user(n)
+        lifespan = n[:_source][:wikidata] ? format_lifespan(n[:_source]) : nil
+        uri = n[:_source][:wikidata] \
+                ? "http://www.wikidata.org/entity/#{n[:_source][:wikidata]}" \
+                : "https://orcid.org/#{n[:_source][:orcid]}"
+        { id: n[:_source][:id],
+          score: n[:_score],
+          orcid: n[:_source][:orcid],
+          wikidata: n[:_source][:wikidata],
+          uri: uri,
+          fullname: n[:_source][:fullname],
+          fullname_reverse: n[:_source][:fullname_reverse],
+          other_names: n[:_source][:other_names],
+          thumbnail: n[:_source][:thumbnail],
+          lifespan: lifespan,
+          description: n[:_source][:description]
+        }
+      end
+
       def format_autocomplete
         @results.map{ |n|
-          lifespan = nil
-          lifespan = n[:_source][:wikidata] ? format_lifespan(n[:_source]) : nil
-          uri = n[:_source][:wikidata] \
-                  ? "http://www.wikidata.org/entity/#{n[:_source][:wikidata]}" \
-                  : "https://orcid.org/#{n[:_source][:orcid]}"
-          { id: n[:_source][:id],
-            score: n[:_score],
-            orcid: n[:_source][:orcid],
-            wikidata: n[:_source][:wikidata],
-            uri: uri,
-            fullname: n[:_source][:fullname],
-            fullname_reverse: n[:_source][:fullname_reverse],
-            other_names: n[:_source][:other_names],
-            thumbnail: n[:_source][:thumbnail],
-            lifespan: lifespan,
-            description: n[:_source][:description]
-          }
+          format_user(n)
         }
       end
 
@@ -100,7 +103,7 @@ module Sinatra
           name: n[:_source][:fullname],
           givenName: n[:_source][:given],
           familyName: n[:_source][:family],
-          alternateName: [n[:_source][:fullname_reverse]] + n[:_source][:other_names],
+          alternateName: [n[:_source][:fullname_reverse]] + n[:_source][:other_names]
           co_collector: n[:_source][:co_collectors].map do |colleague|
             - same_as = colleague[:orcid] ? "https://orcid.org/#{colleague[:orcid]}" : "http://www.wikidata.org/entity/#{colleague[:wikidata]}"
             {
