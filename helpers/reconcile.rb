@@ -14,7 +14,7 @@ module Sinatra
             url: "https://bionomia.net/{{id}}"
           },
           preview: {
-            url: "https://api.bionoimia.net/reconcile/preview/{{id}}",
+            url: "https://api.bionomia.net/reconcile/preview/{{id}}",
             width: 400,
             height: 400
           },
