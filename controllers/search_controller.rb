@@ -7,6 +7,11 @@ module Sinatra
 
         def self.registered(app)
 
+          app.get '/' do
+            json_headers
+            halt 404
+          end
+
           app.get '/parse' do
             json_headers
             json_response(parse_names)
