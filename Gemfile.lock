@@ -98,6 +98,9 @@ GEM
     namecase (2.0.0)
     netrc (0.11.0)
     pagy (6.0.1)
+    passenger (6.0.17)
+      rack
+      rake (>= 0.8.1)
     rack (2.2.6.2)
     rack-contrib (2.3.0)
       rack (~> 2.0)
@@ -154,6 +157,7 @@ DEPENDENCIES
   elasticsearch (~> 7.17)
   haml (~> 5.2.2)
   pagy
+  passenger
   rack-contrib
   rack-test
   rake
@@ -165,7 +169,7 @@ DEPENDENCIES
   typhoeus
 
 RUBY VERSION
-   ruby 2.7.1p83
+   ruby 3.2.1p31
 
 BUNDLED WITH
-   2.3.8
+   2.4.6
