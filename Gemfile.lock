@@ -101,7 +101,7 @@ GEM
     passenger (6.0.17)
       rack
       rake (>= 0.8.1)
-    rack (2.2.6.2)
+    rack (2.2.6.3)
     rack-contrib (2.3.0)
       rack (~> 2.0)
     rack-protection (3.0.5)
