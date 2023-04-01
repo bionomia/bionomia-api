@@ -9,7 +9,7 @@ See [https://bionomia.net/developers](https://bionomia.net/developers) on Search
 
 ## Development Requirements
 
-1. ruby 2.7.1+
+1. ruby 3.2.1+
 2. Elasticsearch 7.6.1+
 
 ## Synonyms File

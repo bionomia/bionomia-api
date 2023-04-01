@@ -1,4 +1,5 @@
 require 'bundler'
+require 'active_support/all'
 require 'json'
 require 'sinatra/base'
 require 'config'

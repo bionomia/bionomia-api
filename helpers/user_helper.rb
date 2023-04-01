@@ -2,7 +2,7 @@
 
 module Sinatra
   module BionomiaApi
-    module UserHelpers
+    module UserHelper
 
       def search_user
         @results = []

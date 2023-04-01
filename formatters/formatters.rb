@@ -18,6 +18,10 @@ module Sinatra
         content_type "application/json", charset: 'utf-8'
       end
 
+      def svg_headers
+        content_type "image/svg+xml", charset: 'utf-8'
+      end
+
       def json_ld_headers
         content_type "application/ld+json", charset: 'utf-8'
       end

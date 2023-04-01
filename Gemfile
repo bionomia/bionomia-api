@@ -1,6 +1,7 @@
 source 'http://rubygems.org'
 ruby '3.2.1'
 
+gem 'activesupport'
 gem 'config'
 gem 'dwc_agent'
 gem 'elasticsearch', '~>7.17'

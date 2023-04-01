@@ -19,7 +19,8 @@ class BIONOMIAAPI < Sinatra::Base
   helpers Sinatra::BionomiaApi::Formatters
   helpers Sinatra::BionomiaApi::Queries
   helpers Sinatra::BionomiaApi::Reconcile
-  helpers Sinatra::BionomiaApi::UserHelpers
+  helpers Sinatra::BionomiaApi::UserHelper
+  helpers Sinatra::BionomiaApi::DatasetHelper
 
   register Sinatra::BionomiaApi::Controller::SearchController
   register Sinatra::BionomiaApi::Controller::ReconcileController
