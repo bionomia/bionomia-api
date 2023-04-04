@@ -87,6 +87,11 @@ module Sinatra
             json_response(response)
           end
 
+          app.get '/dataset/:id.json' do
+            json_headers
+            search_dataset_by_uuid(params[:id]).to_json
+          end
+
           app.get '/dataset/:id/badge.svg' do
             svg_headers
             @doc = search_dataset_by_uuid(params[:id])
