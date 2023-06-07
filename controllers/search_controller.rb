@@ -52,7 +52,7 @@ module Sinatra
 
             response = {
               "@context": {
-                "@vocab": "http://schema.org",
+                "@vocab": "http://schema.org/",
                 sameAs: {
                   "@id": "sameAs",
                   "@type": "@id"
@@ -109,7 +109,7 @@ module Sinatra
             if @result
               response = {
                 "@context": {
-                  "@vocab": "http://schema.org",
+                  "@vocab": "http://schema.org/",
                   sameAs: {
                     "@id": "sameAs",
                     "@type": "@id"
