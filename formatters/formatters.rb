@@ -75,7 +75,8 @@ module Sinatra
       def format_agent(n)
         { id: n[:_source][:id],
           score: n[:_score],
-          fullname: n[:_source][:fullname]
+          fullname: n[:_source][:fullname],
+          fullname_reverse: n[:_source][:fullname_reverse]
         }
       end
 
