@@ -72,10 +72,19 @@ module Sinatra
         }
       end
 
-      def format_autocomplete
-        @results.map{ |n|
-          format_user(n)
+      def format_agent(n)
+        { id: n[:_source][:id],
+          score: n[:_score],
+          fullname: n[:_source][:fullname]
         }
+      end
+
+      def format_autocomplete
+        @results.map{ |n| format_user(n) }
+      end
+
+      def format_autocomplete_agent
+        @results.map{ |n| format_agent(n) }
       end
 
       def format_users

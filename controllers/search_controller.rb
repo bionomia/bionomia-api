@@ -25,7 +25,7 @@ module Sinatra
           app.get '/agent.json' do
             json_headers
             search_agent
-            format_autocomplete.to_json
+            format_autocomplete_agent.to_json
           end
 
           app.get '/user.json' do
