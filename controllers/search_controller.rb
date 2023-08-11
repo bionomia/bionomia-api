@@ -9,7 +9,14 @@ module Sinatra
 
           app.get '/' do
             json_headers
-            halt 404
+            status 404
+            {
+              errors: [
+                {
+                  status: 404
+                }
+              ]
+            }.to_json
           end
 
           app.get '/parse' do
