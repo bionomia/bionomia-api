@@ -19,12 +19,12 @@ module Sinatra
             }.to_json
           end
 
-          app.get '/parse' do
+          app.get '/parse', '/parse.json' do
             json_headers
             json_response(parse_names)
           end
 
-          app.post '/parse' do
+          app.post '/parse', '/parse.json' do
             json_headers
             json_response(parse_names)
           end
