@@ -41,21 +41,25 @@ module Sinatra
             format_autocomplete.to_json
           end
 
-          app.get '/users/search' do
+          app.get '/users/search', '/user.jsonld' do
             json_ld_headers
             api_search_user
 
-            first = "#{base_url}/users/search?#{URI.encode_www_form(params.merge({ "page" => 1 }))}"
+            elements = params.except("captures").merge({ "page" => 1 })
+            first = "#{base_url}#{request.path_info}?#{URI.encode_www_form(elements)}"
             prev = nil
             if @pagy.page > 1 && @pagy.page <= @pagy.pages
-              prev = "#{base_url}/users/search?#{URI.encode_www_form(params.merge({ "page" => @pagy.page.to_i - 1 }))}"
+              elements = params.except("captures").merge({ "page" => @pagy.page.to_i - 1 })
+              prev = "#{base_url}#{request.path_info}?#{URI.encode_www_form(elements)}"
             end
-            current = "#{base_url}/users/search?#{URI.encode_www_form(params)}"
+            current = "#{base_url}#{request.path_info}?#{URI.encode_www_form(params.except("captures"))}"
             nxt = nil
             if @pagy.page < @pagy.pages
-              nxt = "#{base_url}/users/search?#{URI.encode_www_form(params.merge({ "page" => @pagy.page.to_i + 1 }))}"
+              elements = params.except("captures").merge({ "page" => @pagy.page.to_i + 1 })
+              nxt = "#{base_url}#{request.path_info}?#{URI.encode_www_form(elements)}"
             end
-            last = "#{base_url}/users/search?#{URI.encode_www_form(params.merge({ "page" => @pagy.pages }))}"
+            elements = params.except("captures").merge({ "page" => @pagy.pages })
+            last = "#{base_url}#{request.path_info}?#{URI.encode_www_form(elements)}"
 
             response = {
               "@context": {
@@ -87,7 +91,7 @@ module Sinatra
               license: "https://creativecommons.org/publicdomain/zero/1.0/",
               potentialAction: {
                 "@type": "SearchAction",
-                target: "#{base_url}/users/search?q={name}&families_identified={families_identified}&families_collected={families_collected}&date={date}&page={page}&strict={true|false}"
+                target: "#{base_url}#{request.path_info}?q={name}&families_identified={families_identified}&families_collected={families_collected}&date={date}&page={page}&strict={true|false}"
               },
               dataFeedElement: format_users
             }

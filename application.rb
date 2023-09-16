@@ -10,6 +10,7 @@ class BIONOMIAAPI < Sinatra::Base
   set :show_exceptions, false
   set :protection, :except => [:json_csrf]
 
+  register Sinatra::MultiRoute
   register Config
 
   include Pagy::Backend
