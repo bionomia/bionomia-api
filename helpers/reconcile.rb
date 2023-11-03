@@ -30,7 +30,8 @@ module Sinatra
               service_path: "/suggest/property",
               flyout_service_path: "/flyout/property/${id}"
             }
-          }
+          },
+          batchSize: 25
         }
       end
 
