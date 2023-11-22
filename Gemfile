@@ -15,6 +15,7 @@ gem 'sinatra'
 gem 'sinatra-contrib'
 gem 'thin'
 gem 'typhoeus'
+gem 'faraday-typhoeus'
 
 group :production do
   gem 'passenger'

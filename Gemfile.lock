@@ -76,6 +76,9 @@ GEM
       faraday-net_http (>= 2.0, < 3.1)
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
+    faraday-typhoeus (1.1.0)
+      faraday (~> 2.0)
+      typhoeus (~> 1.4)
     ffi (1.16.3)
     haml (5.2.2)
       temple (>= 0.8.0)
@@ -160,6 +163,7 @@ DEPENDENCIES
   config
   dwc_agent
   elasticsearch (~> 7.17)
+  faraday-typhoeus
   haml (~> 5.2.2)
   pagy
   passenger
