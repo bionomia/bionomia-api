@@ -46,7 +46,7 @@ module Sinatra
                         "family^3",
                         "given",
                         "fullname^5",
-                        "label",
+                        "label^4",
                         "other_names",
                         "*.edge"
                       ],
@@ -85,7 +85,7 @@ module Sinatra
                     query:      name,
                     type:       :cross_fields,
                     analyzer:   :fullname_index,
-                    fields:     ["family^5", "given^3", "fullname", "label", "other_names", "*.edge"],
+                    fields:     ["family^3", "given", "fullname^5", "label^4", "other_names", "*.edge"],
                   }
                 ],
                 should: []
