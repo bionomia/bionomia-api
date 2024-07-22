@@ -74,7 +74,7 @@ module Sinatra
               },
               "@type": "DataFeed",
               "opensearch:totalResults": @pagy.count,
-              "opensearch:itemsPerPage": @pagy.items,
+              "opensearch:itemsPerPage": @pagy.limit,
               "as:first": first,
               "as:prev": prev,
               "as:current": current,

@@ -15,7 +15,7 @@ class BIONOMIAAPI < Sinatra::Base
 
   include Pagy::Backend
   include Pagy::Frontend
-  Pagy::DEFAULT[:items] = 30
+  Pagy::DEFAULT[:limit] = 30
 
   helpers Sinatra::BionomiaApi::Formatters
   helpers Sinatra::BionomiaApi::Queries
