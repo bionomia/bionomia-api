@@ -35,7 +35,7 @@ module Sinatra
           adapter: :typhoeus
         )
         body = build_name_query(searched_term, opts)
-        from = (page -1) * limit
+        from = (page-1) * limit
 
         response = client.search index: Settings.elastic.user_index, from: from, size: limit, body: body
         results = JSON.parse(JSON[response["hits"]], symbolize_names: true)
@@ -46,7 +46,6 @@ module Sinatra
 
       def search_agent
         @results = []
-        filters = []
         searched_term = params[:q] || nil
         return if !searched_term
 
@@ -62,7 +61,7 @@ module Sinatra
           adapter: :typhoeus
         )
         body = build_name_query(searched_term)
-        from = (page -1) * limit
+        from = (page-1) * limit
 
         response = client.search index: Settings.elastic.agent_index, from: from, size: limit, body: body
         results = JSON.parse(JSON[response["hits"]], symbolize_names: true)
@@ -94,7 +93,7 @@ module Sinatra
             adapter: :typhoeus
           )
           @query = build_user_query(searched_term, params.transform_keys(&:to_sym))
-          from = (page -1) * limit
+          from = (page-1) * limit
 
           response = client.search index: Settings.elastic.user_index, from: from, size: limit, body: @query
           results = JSON.parse(JSON[response["hits"]], symbolize_names: true)
