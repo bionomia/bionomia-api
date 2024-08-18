@@ -1,20 +1,21 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    activesupport (7.1.3.4)
+    activesupport (7.2.0)
       base64
       bigdecimal
-      concurrent-ruby (~> 1.0, >= 1.0.2)
+      concurrent-ruby (~> 1.0, >= 1.3.1)
       connection_pool (>= 2.2.5)
       drb
       i18n (>= 1.6, < 2)
+      logger (>= 1.4.2)
       minitest (>= 5.1)
-      mutex_m
-      tzinfo (~> 2.0)
+      securerandom (>= 0.3)
+      tzinfo (~> 2.0, >= 2.0.5)
     base64 (0.2.0)
     bigdecimal (3.1.8)
     byebug (11.1.3)
-    concurrent-ruby (1.3.3)
+    concurrent-ruby (1.3.4)
     config (5.5.1)
       deep_merge (~> 1.2, >= 1.2.1)
     connection_pool (2.4.1)
@@ -38,10 +39,10 @@ GEM
     ethon (0.16.0)
       ffi (>= 1.15.0)
     eventmachine (1.2.7)
-    faraday (2.10.0)
+    faraday (2.10.1)
       faraday-net_http (>= 2.0, < 3.2)
       logger
-    faraday-net_http (3.1.0)
+    faraday-net_http (3.1.1)
       net-http
     faraday-typhoeus (1.1.0)
       faraday (~> 2.0)
@@ -51,30 +52,30 @@ GEM
       temple (>= 0.8.0)
       tilt
     http-accept (1.7.0)
-    http-cookie (1.0.6)
+    http-cookie (1.0.7)
       domain_name (~> 0.5)
     i18n (1.14.5)
       concurrent-ruby (~> 1.0)
     logger (1.6.0)
     mime-types (3.5.2)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.0702)
-    minitest (5.24.1)
+    mime-types-data (3.2024.0806)
+    minitest (5.25.1)
     multi_json (1.15.0)
-    mustermann (3.0.0)
+    mustermann (3.0.2)
       ruby2_keywords (~> 0.0.1)
-    mutex_m (0.2.0)
     namae (1.2.0)
       racc (~> 1.7)
     namecase (2.0.0)
     net-http (0.4.1)
       uri
     netrc (0.11.0)
-    pagy (9.0.2)
-    passenger (6.0.22)
-      rack
-      rake (>= 0.8.1)
-    racc (1.8.0)
+    pagy (9.0.5)
+    passenger (6.0.23)
+      rack (>= 1.6.13)
+      rackup
+      rake (>= 12.3.3)
+    racc (1.8.1)
     rack (2.2.9)
     rack-contrib (2.5.0)
       rack (< 4)
@@ -83,6 +84,9 @@ GEM
       rack (~> 2.2, >= 2.2.4)
     rack-test (2.1.0)
       rack (>= 1.3)
+    rackup (1.0.0)
+      rack (< 3)
+      webrick
     rake (13.2.1)
     require_all (3.0.0)
     rest-client (2.1.0)
@@ -104,6 +108,7 @@ GEM
       rspec-support (~> 3.13.0)
     rspec-support (3.13.1)
     ruby2_keywords (0.0.5)
+    securerandom (0.3.1)
     sinatra (3.2.0)
       mustermann (~> 3.0)
       rack (~> 2.2, >= 2.2.4)
@@ -126,6 +131,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uri (0.13.0)
+    webrick (1.8.1)
 
 PLATFORMS
   ruby
