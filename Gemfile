@@ -13,7 +13,6 @@ gem 'require_all'
 gem 'rest-client'
 gem 'sinatra'
 gem 'sinatra-contrib'
-gem 'thin'
 gem 'typhoeus'
 gem 'faraday-typhoeus'
 
