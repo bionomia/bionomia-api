@@ -60,7 +60,7 @@ GEM
     mime-types-data (3.2024.0806)
     minitest (5.25.1)
     multi_json (1.15.0)
-    mustermann (3.0.2)
+    mustermann (3.0.1)
       ruby2_keywords (~> 0.0.1)
     namae (1.2.0)
       racc (~> 1.7)
@@ -141,6 +141,7 @@ DEPENDENCIES
   elasticsearch (~> 7.17)
   faraday-typhoeus
   haml (~> 5.2.2)
+  mustermann (= 3.0.1)
   pagy
   passenger
   rack-contrib
