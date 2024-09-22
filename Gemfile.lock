@@ -23,7 +23,7 @@ GEM
     diff-lcs (1.5.1)
     domain_name (0.6.20240107)
     drb (2.2.1)
-    dwc_agent (3.1.5.0)
+    dwc_agent (3.2.0.0)
       namae (~> 1)
       namecase (~> 2)
     elasticsearch (7.17.11)
@@ -37,8 +37,9 @@ GEM
       multi_json
     ethon (0.16.0)
       ffi (>= 1.15.0)
-    faraday (2.11.0)
+    faraday (2.12.0)
       faraday-net_http (>= 2.0, < 3.4)
+      json
       logger
     faraday-net_http (3.3.0)
       net-http
@@ -52,8 +53,9 @@ GEM
     http-accept (1.7.0)
     http-cookie (1.0.7)
       domain_name (~> 0.5)
-    i18n (1.14.5)
+    i18n (1.14.6)
       concurrent-ruby (~> 1.0)
+    json (2.7.2)
     logger (1.6.1)
     mime-types (3.5.2)
       mime-types-data (~> 3.2015)
@@ -68,7 +70,7 @@ GEM
     net-http (0.4.1)
       uri
     netrc (0.11.0)
-    pagy (9.0.8)
+    pagy (9.0.9)
     passenger (6.0.23)
       rack (>= 1.6.13)
       rackup
@@ -100,7 +102,7 @@ GEM
       rspec-mocks (~> 3.13.0)
     rspec-core (3.13.1)
       rspec-support (~> 3.13.0)
-    rspec-expectations (3.13.2)
+    rspec-expectations (3.13.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-mocks (3.13.1)
