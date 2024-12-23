@@ -1,7 +1,7 @@
 GEM
   remote: http://rubygems.org/
   specs:
-    activesupport (8.0.0)
+    activesupport (8.0.1)
       base64
       benchmark (>= 0.3)
       bigdecimal
@@ -41,7 +41,7 @@ GEM
       multi_json
     ethon (0.16.0)
       ffi (>= 1.15.0)
-    faraday (2.12.1)
+    faraday (2.12.2)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -55,31 +55,31 @@ GEM
       temple (>= 0.8.0)
       tilt
     http-accept (1.7.0)
-    http-cookie (1.0.7)
+    http-cookie (1.0.8)
       domain_name (~> 0.5)
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
-    json (2.8.2)
-    logger (1.6.1)
+    json (2.9.1)
+    logger (1.6.4)
     mime-types (3.6.0)
       logger
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2024.1105)
-    minitest (5.25.2)
+    mime-types-data (3.2024.1203)
+    minitest (5.25.4)
     multi_json (1.15.0)
     mustermann (3.0.3)
       ruby2_keywords (~> 0.0.1)
     namae (1.2.0)
       racc (~> 1.7)
     namecase (2.0.0)
-    net-http (0.5.0)
+    net-http (0.6.0)
       uri
     netrc (0.11.0)
     ostruct (0.6.1)
-    pagy (9.3.1)
-    passenger (6.0.23)
+    pagy (9.3.3)
+    passenger (6.0.24)
       rack (>= 1.6.13)
-      rackup
+      rackup (>= 2.0.0)
       rake (>= 12.3.3)
     racc (1.8.1)
     rack (3.1.8)
@@ -114,9 +114,9 @@ GEM
     rspec-mocks (3.13.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-support (3.13.1)
+    rspec-support (3.13.2)
     ruby2_keywords (0.0.5)
-    securerandom (0.3.2)
+    securerandom (0.4.1)
     sinatra (4.1.1)
       logger (>= 1.6.0)
       mustermann (~> 3.0)
@@ -131,13 +131,13 @@ GEM
       sinatra (= 4.1.1)
       tilt (~> 2.0)
     temple (0.10.3)
-    tilt (2.4.0)
+    tilt (2.5.0)
     typhoeus (1.4.1)
       ethon (>= 0.9.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     uri (1.0.2)
-    webrick (1.9.0)
+    webrick (1.9.1)
 
 PLATFORMS
   ruby
