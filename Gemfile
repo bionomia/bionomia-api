@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby '3.2.1'
+ruby '3.3.6'
 
 gem 'activesupport'
 gem 'config'
