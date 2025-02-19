@@ -26,7 +26,6 @@ class BIONOMIAAPI < Sinatra::Base
   register Sinatra::BionomiaApi::Controller::SearchController
   register Sinatra::BionomiaApi::Controller::ReconcileController
 
-
   error Sinatra::NotFound do
     if !content_type
       haml :oops
