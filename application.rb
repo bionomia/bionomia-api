@@ -13,9 +13,8 @@ class BIONOMIAAPI < Sinatra::Base
   register Sinatra::MultiRoute
   register Config
 
-  include Pagy::Backend
-  include Pagy::Frontend
-  Pagy::DEFAULT[:limit] = 30
+  include Pagy::Method
+  Pagy.options[:limit] = 30
 
   helpers Sinatra::BionomiaApi::Formatters
   helpers Sinatra::BionomiaApi::Queries
