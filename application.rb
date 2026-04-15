@@ -14,7 +14,7 @@ class BIONOMIAAPI < Sinatra::Base
   register Config
 
   include Pagy::Method
-  Pagy.options[:limit] = 30
+  Pagy::OPTIONS[:limit] = 30
 
   helpers Sinatra::BionomiaApi::Formatters
   helpers Sinatra::BionomiaApi::Queries
