@@ -40,7 +40,7 @@ module Sinatra
         response = client.search index: Settings.elastic.user_index, from: from, size: limit, body: body
         results = JSON.parse(JSON[response["hits"]], symbolize_names: true)
 
-        @pagy = Pagy::Offset.new(count: results[:total][:value], page: page, limit: limit, request: Pagy::Request.new(request))
+        @pagy = Pagy::Offset.new(count: results[:total][:value], page: page, limit: limit, request: request)
         @results = results[:hits]
       end
 
@@ -66,7 +66,7 @@ module Sinatra
         response = client.search index: Settings.elastic.agent_index, from: from, size: limit, body: body
         results = JSON.parse(JSON[response["hits"]], symbolize_names: true)
 
-        @pagy = Pagy::Offset.new(count: results[:total][:value], page: page, limit: limit, request: Pagy::Request.new(request))
+        @pagy = Pagy::Offset.new(count: results[:total][:value], page: page, limit: limit, request: request)
         @results = results[:hits]
       end
 
@@ -104,7 +104,7 @@ module Sinatra
             page = total % limit == 0 ? total/limit : (total/limit).to_i + 1
           end
 
-          @pagy = Pagy::Offset.new(count: total, page: page, limit: limit, request: Pagy::Request.new(request))
+          @pagy = Pagy::Offset.new(count: total, page: page, limit: limit, request: request)
           @results = results[:hits]
         end
       end
